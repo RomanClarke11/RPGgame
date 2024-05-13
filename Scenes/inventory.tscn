@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0jlh06vmy68p"]
+
+[ext_resource type="Script" path="res://Scripts/inventory.gd" id="1_qjcey"]
+[ext_resource type="Texture2D" uid="uid://04onofnof11e" path="res://Sprites/Boot.png" id="2_6vkbt"]
+[ext_resource type="Texture2D" uid="uid://df646ybu5477a" path="res://Sprites/gold.png" id="2_76n55"]
+[ext_resource type="Texture2D" uid="uid://dwxblk33c08lp" path="res://Sprites/player.png" id="3_5whim"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0wh4n"]
+radius = 43.1741
+
+[node name="Inventory" type="Node2D"]
+script = ExtResource("1_qjcey")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="Boot" type="Sprite2D" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+z_index = 2
+position = Vector2(527, 340)
+texture = ExtResource("2_6vkbt")
+
+[node name="bootDiscription" type="Label" parent="CanvasLayer/Boot"]
+unique_name_in_owner = true
+offset_left = -96.0
+offset_top = 13.0
+offset_right = 58.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(0.890196, 0.388235, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.313726, 0.376471, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_font_sizes/font_size = 20
+text = "Boots 
+increases speed"
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer/Boot"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Boot/Area2D"]
+position = Vector2(-44, -22)
+shape = SubResource("CircleShape2D_0wh4n")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.276
+anchor_top = 0.242
+anchor_right = 0.276
+anchor_bottom = 0.242
+offset_left = -2316.95
+offset_top = -1381.82
+offset_right = 2632.05
+offset_bottom = 1577.18
+color = Color(0.121569, 0.121569, 0.121569, 0.717647)
+
+[node name="Gold" type="Label" parent="CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 43.0
+offset_top = 431.0
+offset_right = 132.0
+offset_bottom = 482.0
+theme_override_font_sizes/font_size = 30
+text = "GOLD"
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Gold"]
+position = Vector2(49, 81)
+scale = Vector2(2.66513, 2.17626)
+texture = ExtResource("2_76n55")
+
+[node name="goldCount" type="Label" parent="CanvasLayer/Gold"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 166.0
+offset_right = 64.0
+offset_bottom = 201.0
+theme_override_font_sizes/font_size = 25
+
+[node name="Player" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(293, 268)
+scale = Vector2(13.0032, 9.20797)
+texture = ExtResource("3_5whim")
+hframes = 5
+vframes = 7
+
+[connection signal="mouse_entered" from="CanvasLayer/Boot/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Boot/Area2D" to="." method="_on_area_2d_mouse_exited"]

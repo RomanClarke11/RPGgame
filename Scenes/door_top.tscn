@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://78537g6a0ikr"]
+
+[ext_resource type="Script" path="res://Scripts/door_top.gd" id="1_cj5rh"]
+[ext_resource type="Texture2D" uid="uid://bj0b2yc7ep3ij" path="res://Sprites/wall.png" id="1_vgght"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0uw1e"]
+size = Vector2(266, 49)
+
+[node name="DoorTop" type="Node2D"]
+script = ExtResource("1_cj5rh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2, -14.5)
+shape = SubResource("RectangleShape2D_0uw1e")
+
+[node name="Wall" type="Sprite2D" parent="."]
+position = Vector2(6, -10)
+scale = Vector2(0.32, 0.176915)
+texture = ExtResource("1_vgght")

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhh6jswok88h2"]
+
+[ext_resource type="Texture2D" uid="uid://dcaacjwv8tobh" path="res://icon.svg" id="1_gj43m"]
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_majka"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tefy4"]
+size = Vector2(8, 132)
+
+[node name="Bullet" type="Area2D"]
+top_level = true
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_majka")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(62, -6)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_tefy4")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(60, -2)
+rotation = -1.5708
+scale = Vector2(0.101563, 1)
+texture = ExtResource("1_gj43m")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

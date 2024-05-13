@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://c22idrcjb2xbx"]
+
+[ext_resource type="Script" path="res://Scripts/cross_bow.gd" id="1_fa17g"]
+[ext_resource type="Texture2D" uid="uid://cts1qok3260oo" path="res://Sprites/CrossBow.png" id="2_2dfh2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_twtl2"]
+radius = 647.111
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pngxd"]
+atlas = ExtResource("2_2dfh2")
+region = Rect2(0, 0, 600, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4xcs"]
+atlas = ExtResource("2_2dfh2")
+region = Rect2(600, 0, 600, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2cfi7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pngxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4xcs")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CrossBow" type="Area2D"]
+collision_mask = 5
+script = ExtResource("1_fa17g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_twtl2")
+
+[node name="WeaponPivot" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WeaponPivot"]
+unique_name_in_owner = true
+position = Vector2(118, -16)
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_2cfi7")
+frame = 1
+frame_progress = 1.0
+
+[node name="ShootingPoint" type="Marker2D" parent="WeaponPivot/AnimatedSprite2D"]
+unique_name_in_owner = true
+position = Vector2(-15, -39)
+rotation = 1.5708
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

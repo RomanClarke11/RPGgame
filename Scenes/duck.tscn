@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://bkjp6xce1hgdx"]
+
+[ext_resource type="Script" path="res://Scripts/Duck.gd" id="1_kedfc"]
+[ext_resource type="Texture2D" uid="uid://cg7dx66bpiubu" path="res://Sprites/Duck.png" id="2_5skwx"]
+[ext_resource type="Script" path="res://Scripts/dukcHitBox.gd" id="3_66b4e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qc87"]
+atlas = ExtResource("2_5skwx")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahr6h"]
+atlas = ExtResource("2_5skwx")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c04ky"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qc87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahr6h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v5fag"]
+radius = 50.01
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_474yu"]
+size = Vector2(71, 116)
+
+[node name="Duck" type="CharacterBody2D"]
+collision_mask = 5
+script = ExtResource("1_kedfc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_c04ky")
+autoplay = "default"
+frame = 1
+frame_progress = 0.616506
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 6)
+shape = SubResource("CircleShape2D_v5fag")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 4
+script = ExtResource("3_66b4e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2.5, 3)
+shape = SubResource("RectangleShape2D_474yu")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

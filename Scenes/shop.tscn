@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://djfp1ekebmvum"]
+
+[ext_resource type="Script" path="res://Scripts/shop.gd" id="1_32qne"]
+[ext_resource type="Texture2D" uid="uid://dynokatlcv3p" path="res://Sprites/shop.png" id="1_fjxlo"]
+[ext_resource type="Texture2D" uid="uid://04onofnof11e" path="res://Sprites/Boot.png" id="3_kuvpk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dylas"]
+size = Vector2(37.8567, 17.6918)
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_32qne")
+
+[node name="Shop" type="Sprite2D" parent="."]
+position = Vector2(1348, 154)
+scale = Vector2(1.96716, 1.51214)
+texture = ExtResource("1_fjxlo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1166, 125)
+
+[node name="Boot" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(662, 127)
+scale = Vector2(2.55218, 2.59124)
+texture = ExtResource("3_kuvpk")
+
+[node name="Button" type="Button" parent="Boot"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -90.9027
+offset_top = -60.5889
+offset_right = 22.0973
+offset_bottom = -1.58886
+
+[node name="Area2D" type="Area2D" parent="Boot"]
+position = Vector2(-95.9963, -46.31)
+scale = Vector2(3.08951, 3.47325)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boot/Area2D"]
+position = Vector2(19.4039, 4.44444)
+shape = SubResource("RectangleShape2D_dylas")
+
+[connection signal="pressed" from="Boot/Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="Boot/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Boot/Area2D" to="." method="_on_area_2d_mouse_exited"]

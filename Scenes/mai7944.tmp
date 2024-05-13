@@ -1,0 +1,122 @@
+[gd_scene load_steps=8 format=3 uid="uid://qf3q0cmcnhnd"]
+
+[ext_resource type="Texture2D" uid="uid://sq60rhv80mak" path="res://Sprites/GAME BACKROUND LEVEL 1.png" id="1_766xd"]
+[ext_resource type="Script" path="res://Scripts/main_level.gd" id="1_cpd5b"]
+[ext_resource type="PackedScene" uid="uid://tfb1n8dl6ojr" path="res://Scenes/wall.tscn" id="2_awooy"]
+[ext_resource type="PackedScene" uid="uid://c6p48e67nnwyf" path="res://Scenes/character_body_2d.tscn" id="3_6171k"]
+[ext_resource type="PackedScene" uid="uid://d0xhkwa3hk1cm" path="res://Scenes/portal.tscn" id="5_vgeco"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02ipm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrfkx"]
+bg_color = Color(0.411765, 0.839216, 0.521569, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_cpd5b")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -2570.0
+offset_top = -1536.0
+offset_right = 2946.0
+offset_bottom = 1720.0
+color = Color(0.305882, 0.690196, 0.905882, 1)
+
+[node name="Wall" parent="." instance=ExtResource("2_awooy")]
+position = Vector2(1001, -7.00002)
+scale = Vector2(0.847106, -50.7953)
+
+[node name="Wall2" parent="Wall" instance=ExtResource("2_awooy")]
+position = Vector2(1546.44, 1.75213)
+scale = Vector2(1, 0.63225)
+
+[node name="Wall7" parent="Wall" instance=ExtResource("2_awooy")]
+position = Vector2(938.489, -3.7405)
+rotation = -1.5708
+scale = Vector2(0.0166768, 62.0883)
+
+[node name="Wall8" parent="Wall" instance=ExtResource("2_awooy")]
+position = Vector2(760.236, 8.18973)
+rotation = -1.5708
+scale = Vector2(0.0166768, 75.2625)
+
+[node name="Wall3" parent="Wall" instance=ExtResource("2_awooy")]
+position = Vector2(317.552, -9.62687)
+scale = Vector2(2.65269, 0.636187)
+
+[node name="Wall4" parent="Wall" instance=ExtResource("2_awooy")]
+position = Vector2(-2049.33, -2.97272)
+scale = Vector2(3.77889, 1.19225)
+
+[node name="Wall5" parent="Wall" instance=ExtResource("2_awooy")]
+position = Vector2(526.498, 9.46938)
+rotation = -1.5708
+scale = Vector2(0.0494109, -108.365)
+
+[node name="Wall13" parent="Wall" instance=ExtResource("2_awooy")]
+position = Vector2(-1690.46, 9.17408)
+rotation = -1.5708
+scale = Vector2(0.01, 100)
+
+[node name="Wall6" parent="Wall" instance=ExtResource("2_awooy")]
+position = Vector2(-891.27, -15.8282)
+rotation = 1.57079
+scale = Vector2(0.0634409, -134.493)
+
+[node name="Wall9" parent="Wall" instance=ExtResource("2_awooy")]
+position = Vector2(-1104.94, -12.8949)
+scale = Vector2(16.7556, 0.0942666)
+
+[node name="Wall10" parent="Wall" instance=ExtResource("2_awooy")]
+position = Vector2(-1495.68, -9.90249)
+scale = Vector2(13.231, 0.3388)
+
+[node name="Wall11" parent="Wall" instance=ExtResource("2_awooy")]
+position = Vector2(-1886.42, -10.06)
+scale = Vector2(13.231, 0.3388)
+
+[node name="Wall12" parent="Wall" instance=ExtResource("2_awooy")]
+position = Vector2(-471.016, -10.1781)
+scale = Vector2(13.231, 0.3388)
+
+[node name="Wall14" parent="Wall" instance=ExtResource("2_awooy")]
+position = Vector2(-153.464, 2.73647)
+scale = Vector2(4.25928, 0.182093)
+
+[node name="GameBackroundLevel1" type="Sprite2D" parent="."]
+position = Vector2(608, 350)
+scale = Vector2(2.61956, 2.88445)
+texture = ExtResource("1_766xd")
+
+[node name="Portal" parent="." instance=ExtResource("5_vgeco")]
+position = Vector2(1191, -215)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = 905.0
+offset_top = -102.0
+offset_right = 1461.0
+offset_bottom = -21.0
+theme_override_styles/background = SubResource("StyleBoxFlat_02ipm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jrfkx")
+max_value = 3.0
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="Portal2" parent="." instance=ExtResource("5_vgeco")]
+position = Vector2(468, -507)
+scale = Vector2(0.368089, 0.415469)
+
+[node name="Player" parent="." instance=ExtResource("3_6171k")]
+position = Vector2(176, 136)
+
+[connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]
+[connection signal="body_exited" from="Portal" to="." method="_on_portal_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Portal2" to="." method="_on_portal_2_body_entered"]
+[connection signal="body_exited" from="Portal2" to="." method="_on_portal_2_body_exited"]

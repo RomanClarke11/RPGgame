@@ -1,0 +1,145 @@
+[gd_scene load_steps=20 format=3 uid="uid://1miq8sn5i6i7"]
+
+[ext_resource type="Script" path="res://Scripts/bombMan.gd" id="1_tk0ou"]
+[ext_resource type="Texture2D" uid="uid://b70wtfwjq4emu" path="res://Sprites/bombMan.png" id="2_givrw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pfib8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tckox"]
+atlas = ExtResource("2_givrw")
+region = Rect2(400, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef4b3"]
+atlas = ExtResource("2_givrw")
+region = Rect2(500, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41a8w"]
+atlas = ExtResource("2_givrw")
+region = Rect2(600, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg8ss"]
+atlas = ExtResource("2_givrw")
+region = Rect2(700, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lutdv"]
+atlas = ExtResource("2_givrw")
+region = Rect2(800, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yu1u"]
+atlas = ExtResource("2_givrw")
+region = Rect2(900, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg8ha"]
+atlas = ExtResource("2_givrw")
+region = Rect2(1000, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v336c"]
+atlas = ExtResource("2_givrw")
+region = Rect2(1100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcogg"]
+atlas = ExtResource("2_givrw")
+region = Rect2(1200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x1mrr"]
+atlas = ExtResource("2_givrw")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txvbd"]
+atlas = ExtResource("2_givrw")
+region = Rect2(100, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xu2qu"]
+atlas = ExtResource("2_givrw")
+region = Rect2(200, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_levaa"]
+atlas = ExtResource("2_givrw")
+region = Rect2(300, 0, 100, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hqujc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tckox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef4b3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41a8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg8ss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lutdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yu1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg8ha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v336c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcogg")
+}],
+"loop": true,
+"name": &"boom",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x1mrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txvbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xu2qu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_levaa")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8fjbd"]
+radius = 667.271
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_igwig"]
+radius = 211.038
+
+[node name="Bomb" type="CharacterBody2D"]
+script = ExtResource("1_tk0ou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pfib8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(2.22, 2.07)
+sprite_frames = SubResource("SpriteFrames_hqujc")
+animation = &"walk"
+
+[node name="followArea" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="followArea"]
+position = Vector2(3, -10)
+shape = SubResource("CircleShape2D_8fjbd")
+
+[node name="ExplodeArea" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplodeArea"]
+shape = SubResource("CircleShape2D_igwig")
+debug_color = Color(0, 0.647059, 0.266667, 0.419608)
+
+[connection signal="body_entered" from="followArea" to="." method="_on_follow_area_body_entered"]
+[connection signal="body_entered" from="ExplodeArea" to="." method="_on_explode_area_body_entered"]

@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0acrlpoptfe8"]
+
+[ext_resource type="Script" path="res://Scripts/LevelLoader.gd" id="1_6g1j1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5tjvp"]
+bg_color = Color(0.172549, 0.172549, 0.172549, 0.792157)
+
+[node name="ColorRect" type="ColorRect"]
+anchors_preset = -1
+anchor_left = -4.307
+anchor_top = -6.711
+anchor_right = -4.307
+anchor_bottom = -6.711
+offset_left = -1485.34
+offset_top = 4714.73
+offset_right = 17910.7
+offset_bottom = 15060.7
+color = Color(0.854902, 0.501961, 0.882353, 1)
+script = ExtResource("1_6g1j1")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 38.0
+offset_right = 230.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 30
+text = "Level 1"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 38.0
+offset_right = 490.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 30
+text = "Level 2"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 38.0
+offset_right = 742.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 30
+text = "Level 3"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 163.0
+offset_bottom = 24.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_5tjvp")
+text = "Press ESC to go back "
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 550)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

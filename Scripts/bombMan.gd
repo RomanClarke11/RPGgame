@@ -1,0 +1,26 @@
+extends CharacterBody2D
+
+@onready var player = get_node("/root/RougeLikeRoom/Player")
+@onready var inventory = get_node("/root/Inventory")
+var move = false
+
+func _physics_process(_delta):
+	while move == true:
+		var direction = global_position.direction_to(player.global_position)
+		velocity = direction * 300.0
+		move_and_slide()
+		break
+	
+func _on_follow_area_body_entered(body):
+	if body.has_method("pickUpGold"):
+		%AnimatedSprite2D.play("walk")
+		move = true
+
+
+func _on_explode_area_body_entered(body):
+	if body.has_method("pickUpGold"):
+		move = false
+		%AnimatedSprite2D.play("boom")
+		
+		
+	
