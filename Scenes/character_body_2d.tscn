@@ -429,8 +429,8 @@ script = ExtResource("1_gbjol")
 unique_name_in_owner = true
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_dm0eh")
-animation = &"die"
-frame = 2
+animation = &"attackSide"
+frame = 3
 frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]

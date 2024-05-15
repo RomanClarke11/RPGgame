@@ -87,7 +87,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wcogg")
 }],
-"loop": true,
+"loop": false,
 "name": &"boom",
 "speed": 5.0
 }, {
@@ -141,5 +141,6 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_igwig")
 debug_color = Color(0, 0.647059, 0.266667, 0.419608)
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="followArea" to="." method="_on_follow_area_body_entered"]
 [connection signal="body_entered" from="ExplodeArea" to="." method="_on_explode_area_body_entered"]

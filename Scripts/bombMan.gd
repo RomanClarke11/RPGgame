@@ -21,6 +21,9 @@ func _on_explode_area_body_entered(body):
 	if body.has_method("pickUpGold"):
 		move = false
 		%AnimatedSprite2D.play("boom")
-		
-		
-	
+		await get_tree().create_timer(1.9).timeout
+		queue_free()
+
+
+func _on_animated_sprite_2d_animation_finished():
+	queue_free()

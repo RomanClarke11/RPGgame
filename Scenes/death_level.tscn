@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://balda8007vm4l"]
+
+[ext_resource type="Script" path="res://Scripts/death_level.gd" id="1_e4a6r"]
+[ext_resource type="Texture2D" uid="uid://cqm3yrf68yenw" path="res://Sprites/TombStone.png" id="2_yo5wo"]
+[ext_resource type="Texture2D" uid="uid://dwxblk33c08lp" path="res://Sprites/player.png" id="3_kx260"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3wwh"]
+atlas = ExtResource("3_kx260")
+region = Rect2(0, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3ww4"]
+atlas = ExtResource("3_kx260")
+region = Rect2(48, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_601yy"]
+atlas = ExtResource("3_kx260")
+region = Rect2(96, 432, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2svrn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3wwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3ww4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_601yy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="deathLevel" type="Node2D"]
+script = ExtResource("1_e4a6r")
+
+[node name="TombStone" type="Sprite2D" parent="."]
+position = Vector2(65, 42)
+texture = ExtResource("2_yo5wo")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -13.0
+offset_top = 2.0
+offset_right = 32.0
+offset_bottom = 25.0
+text = "GOLD"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -10.0
+offset_top = 39.0
+offset_right = 30.0
+offset_bottom = 62.0
+text = "FLOOR"
+
+[node name="Label3" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 52.0
+offset_top = 4.0
+offset_right = 92.0
+offset_bottom = 27.0
+
+[node name="Label4" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 57.0
+offset_top = 42.0
+offset_right = 97.0
+offset_bottom = 65.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(107, 40)
+
+[node name="Button" type="Button" parent="."]
+offset_left = -135.0
+offset_top = 218.0
+offset_right = -16.0
+offset_bottom = 314.0
+text = "RETRY"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 46.0
+offset_top = 223.0
+offset_right = 169.0
+offset_bottom = 311.0
+text = "QUIT"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4.00001, -330)
+scale = Vector2(10.5938, 11.1979)
+sprite_frames = SubResource("SpriteFrames_2svrn")
+autoplay = "default"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

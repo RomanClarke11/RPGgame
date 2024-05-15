@@ -11,11 +11,11 @@ func _process(_delta):
 
 func _on_area_2d_mouse_entered():
 	%Boot.scale.x += 1
-	$Boot.scale.y += 1
+	%Boot.scale.y += 1
 
 func _on_area_2d_mouse_exited():
-	%Botot.scale.x -= 1
-	$Boot.scale.y -= 1
+	%Boot.scale.x -= 1
+	%Boot.scale.y -= 1
 
 
 func _on_button_pressed():

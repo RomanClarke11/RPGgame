@@ -5,6 +5,8 @@ var facing_left = false
 var facing_up = false
 var facing_down = true
 var attacking  = false
+var walking = true 
+const dead = "res://Scenes/death_level.tscn"
 @onready var sword = 1
 @onready var inventory = get_node("/root/Inventory")
 @onready var PlayerHealth = get_node("/root/Inventory")
@@ -40,51 +42,41 @@ func _physics_process(_delta):
 		facing_left = true
 		facing_up = false
 		facing_down = false
-	
-	if velocity.length() > 0.0:
-		if facing_up == true:
-			%AnimatedSprite2D.play("walkBack")
-		elif facing_down == true:
-			%AnimatedSprite2D.play("walkForward")
-		elif facing_right == true:
-			%AnimatedSprite2D.scale.x = 0.8
-			%AnimatedSprite2D.play("walkSide")
-		elif facing_left == true:
-			%AnimatedSprite2D.scale.x = -0.8
-			%AnimatedSprite2D.play("walkSide")
-	
-	elif Input.is_key_pressed(KEY_SPACE):
-		if facing_up == true:
-			attack()
-			%AnimatedSprite2D.play("attackBack")
-		elif facing_down == true:
-			attack()
-			%AnimatedSprite2D.play("attackForward")
-		elif facing_right == true:
-			attack()
-			%AnimatedSprite2D.scale.x = 0.8
-			%AnimatedSprite2D.play("attackSide")
-		elif  facing_left == true:
-			attack()
-			%AnimatedSprite2D.scale.x = -0.8
-			%AnimatedSprite2D.play("attackSide")
-		
-	else:
-		if facing_up == true:
-			%AnimatedSprite2D.play("idle back")
-		elif facing_down == true:
-			%AnimatedSprite2D.play("idleForward")
-		elif facing_right == true:
-			%AnimatedSprite2D.scale.x = 0.8
-			%AnimatedSprite2D.play("idleSide")
-		elif facing_left == true:
-			%AnimatedSprite2D.scale.x = -0.8
-			%AnimatedSprite2D.play("idleSide")
+
 			
+			
+
+			
+	while(walking == true):
+		if velocity.length() > 0.0:
+			if facing_up == true:
+				%AnimatedSprite2D.play("walkBack")
+			elif facing_down == true:
+				%AnimatedSprite2D.play("walkForward")
+			elif facing_right == true:
+				%AnimatedSprite2D.scale.x = 0.8
+				%AnimatedSprite2D.play("walkSide")
+			elif facing_left == true:
+				%AnimatedSprite2D.scale.x = -0.8
+				%AnimatedSprite2D.play("walkSide")
 	
+
+		
+		else:
+			if facing_up == true:
+				%AnimatedSprite2D.play("idle back")
+			elif facing_down == true:
+				%AnimatedSprite2D.play("idleForward")
+			elif facing_right == true:
+				%AnimatedSprite2D.scale.x = 0.8
+				%AnimatedSprite2D.play("idleSide")
+			elif facing_left == true:
+				%AnimatedSprite2D.scale.x = -0.8
+				%AnimatedSprite2D.play("idleSide")
+		break
 		
 func _process(_delta):
-	
+	swingSword()
 	%Label.text = str(inventory.floorNum)
 	
 	while Input.is_key_pressed(KEY_SPACE):
@@ -128,7 +120,8 @@ func _process(_delta):
 		%Heart3.visible = false
 		%Heart4.visible = false
 		%Heart5.visible = false
-		%AnimatedSprite2D.play("die")
+		get_tree().change_scene_to_file(dead)
+		
 		
 	
 func pickUpGold():
@@ -142,3 +135,73 @@ func attack():
 	var Attack = SWORD.instantiate()
 	Attack.position = %AnimatedSprite2D.position
 	%AnimatedSprite2D.add_child(Attack)
+	
+	
+func _ready():
+	if PlayerHealth.health == 5:
+		%Heart.visible = true
+		%Heart2.visible = true
+		%Heart3.visible = true
+		%Heart4.visible = true
+		%Heart5.visible = true
+	elif PlayerHealth.health == 4:
+		%Heart.visible = false
+		%Heart2.visible = true
+		%Heart3.visible = true
+		%Heart4.visible = true
+		%Heart5.visible = true
+	elif PlayerHealth.health == 3:
+		%Heart.visible = false
+		%Heart2.visible = false
+		%Heart3.visible = true
+		%Heart4.visible = true
+		%Heart5.visible = true
+	elif PlayerHealth.health == 2:
+		%Heart.visible = false
+		%Heart2.visible = false
+		%Heart3.visible = false
+		%Heart4.visible = true
+		%Heart5.visible = true
+	elif PlayerHealth.health == 1:
+		%Heart.visible = false
+		%Heart2.visible = false
+		%Heart3.visible = false
+		%Heart4.visible = false
+		%Heart5.visible = true
+	elif PlayerHealth.health == 0:
+		%Heart.visible = false
+		%Heart2.visible = false
+		%Heart3.visible = false
+		%Heart4.visible = false
+		%Heart5.visible = false
+		%AnimatedSprite2D.play("die")
+
+func swingSword():
+	if Input.is_key_pressed(KEY_SPACE):
+		if facing_up == true:
+			walking = false 
+			attack()
+			%AnimatedSprite2D.play("attackBack")
+			await get_tree().create_timer(0.6).timeout
+			walking = true
+		elif facing_down == true:
+			walking = false
+			attack()
+			%AnimatedSprite2D.play("attackForward")
+			await get_tree().create_timer(0.6).timeout
+			walking = true
+		elif facing_right == true:
+			walking = false
+			attack()
+			%AnimatedSprite2D.scale.x = 0.8
+			%AnimatedSprite2D.play("attackSide")
+			await get_tree().create_timer(0.6).timeout
+			walking = true 
+		elif  facing_left == true:
+			walking = false 
+			attack()
+			%AnimatedSprite2D.scale.x = -0.8
+			%AnimatedSprite2D.play("attackSide")
+			await get_tree().create_timer(0.6).timeout
+			walking = true 
+
