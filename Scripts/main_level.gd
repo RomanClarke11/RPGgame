@@ -1,6 +1,6 @@
 extends Node2D
 
-const levelSelect = "res://Scenes/LevelSelect.tscn"
+const rougelike = "res://Scenes/rouge_like_room.tscn"
 const loadShop = "res://Scenes/shop.tscn"
 
 func shop():
@@ -26,7 +26,7 @@ func _on_timer_timeout():
 
 func _process(_delta):   
 	if %ProgressBar.value == 3:
-		get_tree().change_scene_to_file(levelSelect)
+		get_tree().change_scene_to_file(rougelike)
 
 
 func _on_portal_2_body_entered(_body):

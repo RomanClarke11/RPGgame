@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cijjmmmob0261"]
+[gd_scene load_steps=12 format=3 uid="uid://cijjmmmob0261"]
 
 [ext_resource type="Script" path="res://Scripts/rouge_like_room.gd" id="1_sfbnj"]
 [ext_resource type="PackedScene" uid="uid://c6p48e67nnwyf" path="res://Scenes/character_body_2d.tscn" id="2_2vutr"]
 [ext_resource type="Texture2D" uid="uid://bsrk6y2swvanl" path="res://Sprites/WallTileMap.png" id="3_ibcfq"]
 [ext_resource type="PackedScene" uid="uid://1miq8sn5i6i7" path="res://Scenes/bomb.tscn" id="4_unk8f"]
 [ext_resource type="PackedScene" uid="uid://tfb1n8dl6ojr" path="res://Scenes/wall.tscn" id="5_1bxyu"]
+[ext_resource type="PackedScene" uid="uid://bkjp6xce1hgdx" path="res://Scenes/duck.tscn" id="6_bkpfb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ge4n"]
 texture = ExtResource("3_ibcfq")
@@ -1149,3 +1150,6 @@ scale = Vector2(0.877574, -7.74632)
 position = Vector2(2381, -304)
 rotation = 3.14159
 scale = Vector2(0.877574, -7.74632)
+
+[node name="Duck" parent="." instance=ExtResource("6_bkpfb")]
+position = Vector2(314, -1997)

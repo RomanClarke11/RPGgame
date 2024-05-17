@@ -6,9 +6,17 @@ var move = false
 
 func _physics_process(_delta):
 	while move == true:
-		var direction = global_position.direction_to(player.global_position)
-		velocity = direction * 300.0
-		move_and_slide()
+		var PlayerPosition = player.global_position
+		if PlayerPosition > global_position:
+			%AnimatedSprite2D.scale.x = 2.22
+			var direction = global_position.direction_to(player.global_position)
+			velocity = direction * 300.0
+			move_and_slide()
+		elif PlayerPosition < global_position:
+			%AnimatedSprite2D.scale.x = -2.22
+			var direction = global_position.direction_to(player.global_position)
+			velocity = direction * 300.0
+			move_and_slide()
 		break
 	
 func _on_follow_area_body_entered(body):
