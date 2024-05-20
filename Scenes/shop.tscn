@@ -1,25 +1,65 @@
-[gd_scene load_steps=5 format=3 uid="uid://djfp1ekebmvum"]
+[gd_scene load_steps=6 format=3 uid="uid://djfp1ekebmvum"]
 
 [ext_resource type="Script" path="res://Scripts/shop.gd" id="1_32qne"]
 [ext_resource type="Texture2D" uid="uid://dynokatlcv3p" path="res://Sprites/shop.png" id="1_fjxlo"]
 [ext_resource type="Texture2D" uid="uid://04onofnof11e" path="res://Sprites/Boot.png" id="3_kuvpk"]
+[ext_resource type="Texture2D" uid="uid://clx2ykd3uemj2" path="res://Sprites/fairyBottle.png" id="4_wwu50"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dylas"]
 size = Vector2(37.8567, 17.6918)
 
 [node name="Shop" type="Node2D"]
+z_index = -10
 script = ExtResource("1_32qne")
 
 [node name="Shop" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(1348, 154)
 scale = Vector2(1.96716, 1.51214)
 texture = ExtResource("1_fjxlo")
+
+[node name="buy" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = 802.0
+offset_top = 168.0
+offset_right = 1099.0
+offset_bottom = 274.0
+theme_override_font_sizes/font_size = 70
+text = "Buy this for G "
+
+[node name="yes" type="Button" parent="buy"]
+layout_mode = 0
+offset_top = 109.0
+offset_right = 174.0
+offset_bottom = 186.0
+theme_override_font_sizes/font_size = 50
+text = "yes"
+
+[node name="Button2" type="Button" parent="buy"]
+layout_mode = 0
+offset_left = 387.0
+offset_top = 115.0
+offset_right = 465.0
+offset_bottom = 192.0
+theme_override_font_sizes/font_size = 50
+text = "No"
+
+[node name="price" type="Label" parent="buy"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 464.0
+offset_top = 3.0
+offset_right = 504.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 70
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1166, 125)
 
 [node name="Boot" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2(662, 127)
 scale = Vector2(2.55218, 2.59124)
 texture = ExtResource("3_kuvpk")
@@ -34,11 +74,27 @@ offset_bottom = -1.58886
 [node name="Area2D" type="Area2D" parent="Boot"]
 position = Vector2(-95.9963, -46.31)
 scale = Vector2(3.08951, 3.47325)
+collision_layer = 15
+collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boot/Area2D"]
-position = Vector2(19.4039, 4.44444)
+position = Vector2(20.0381, 6.22224)
 shape = SubResource("RectangleShape2D_dylas")
 
+[node name="FairyBottle" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1908, 17)
+texture = ExtResource("4_wwu50")
+
+[node name="fairyButton" type="Button" parent="FairyBottle"]
+offset_left = -72.0
+offset_top = -104.0
+offset_right = 82.0
+offset_bottom = 106.0
+
+[connection signal="pressed" from="buy/yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="buy/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Boot/Button" to="." method="_on_button_pressed"]
 [connection signal="mouse_entered" from="Boot/Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Boot/Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="pressed" from="FairyBottle/fairyButton" to="." method="_on_fairy_button_pressed"]

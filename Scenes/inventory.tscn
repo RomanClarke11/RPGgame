@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0jlh06vmy68p"]
+[gd_scene load_steps=7 format=3 uid="uid://d0jlh06vmy68p"]
 
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="1_qjcey"]
 [ext_resource type="Texture2D" uid="uid://04onofnof11e" path="res://Sprites/Boot.png" id="2_6vkbt"]
 [ext_resource type="Texture2D" uid="uid://df646ybu5477a" path="res://Sprites/gold.png" id="2_76n55"]
 [ext_resource type="Texture2D" uid="uid://dwxblk33c08lp" path="res://Sprites/player.png" id="3_5whim"]
+[ext_resource type="Texture2D" uid="uid://clx2ykd3uemj2" path="res://Sprites/fairyBottle.png" id="5_gnxws"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0wh4n"]
 radius = 43.1741
@@ -14,6 +15,21 @@ script = ExtResource("1_qjcey")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
 visible = false
+
+[node name="FairyBottle" type="Sprite2D" parent="CanvasLayer"]
+unique_name_in_owner = true
+z_index = 4096
+position = Vector2(292, 498)
+texture = ExtResource("5_gnxws")
+
+[node name="Label" type="Label" parent="CanvasLayer/FairyBottle"]
+offset_left = 99.0
+offset_top = -82.0
+offset_right = 139.0
+offset_bottom = -59.0
+theme_override_font_sizes/font_size = 30
+text = "On death 
+come back"
 
 [node name="Boot" type="Sprite2D" parent="CanvasLayer"]
 unique_name_in_owner = true

@@ -11,6 +11,8 @@ const dead = "res://Scenes/death_level.tscn"
 @onready var inventory = get_node("/root/Inventory")
 @onready var PlayerHealth = get_node("/root/Inventory")
 
+
+
 func _physics_process(_delta):
 	
 
@@ -83,44 +85,25 @@ func _process(_delta):
 		attacking = true
 		break
 	
-	
 	if PlayerHealth.health == 5:
-		%Heart.visible = true
-		%Heart2.visible = true
-		%Heart3.visible = true
-		%Heart4.visible = true
-		%Heart5.visible = true
+		%Heart.play("5")
 	elif PlayerHealth.health == 4:
-		%Heart.visible = false
-		%Heart2.visible = true
-		%Heart3.visible = true
-		%Heart4.visible = true
-		%Heart5.visible = true
+		%Heart.play("4")
 	elif PlayerHealth.health == 3:
-		%Heart.visible = false
-		%Heart2.visible = false
-		%Heart3.visible = true
-		%Heart4.visible = true
-		%Heart5.visible = true
+		%Heart.play("3")
 	elif PlayerHealth.health == 2:
-		%Heart.visible = false
-		%Heart2.visible = false
-		%Heart3.visible = false
-		%Heart4.visible = true
-		%Heart5.visible = true
+		%Heart.play("2")
 	elif PlayerHealth.health == 1:
-		%Heart.visible = false
-		%Heart2.visible = false
-		%Heart3.visible = false
-		%Heart4.visible = false
-		%Heart5.visible = true
+		%Heart.play("1")
 	elif PlayerHealth.health == 0:
-		%Heart.visible = false
-		%Heart2.visible = false
-		%Heart3.visible = false
-		%Heart4.visible = false
-		%Heart5.visible = false
-		get_tree().change_scene_to_file(dead)
+		%Heart.play("0")
+		if inventory.fairyBottle == true:
+			%AnimatedSprite2D.play("fairy")
+			await get_tree().create_timer(3.0).timeout
+			PlayerHealth.health = 5
+			inventory.fairyBottle = true
+		else:
+			get_tree().change_scene_to_file(dead)
 		
 		
 	
@@ -128,7 +111,11 @@ func pickUpGold():
 	inventory.gold += 1
 
 func takeDamage():
+	%Blood.visible = true
 	PlayerHealth.health -= 1
+	await get_tree().create_timer(0.6).timeout
+	%Blood.visible = false
+	
 
 func attack():
 	const SWORD = preload("res://Scenes/sword.tscn")
@@ -139,42 +126,17 @@ func attack():
 	
 func _ready():
 	if PlayerHealth.health == 5:
-		%Heart.visible = true
-		%Heart2.visible = true
-		%Heart3.visible = true
-		%Heart4.visible = true
-		%Heart5.visible = true
+		%Heart.play("5")
 	elif PlayerHealth.health == 4:
-		%Heart.visible = false
-		%Heart2.visible = true
-		%Heart3.visible = true
-		%Heart4.visible = true
-		%Heart5.visible = true
+		%Heart.play("4")
 	elif PlayerHealth.health == 3:
-		%Heart.visible = false
-		%Heart2.visible = false
-		%Heart3.visible = true
-		%Heart4.visible = true
-		%Heart5.visible = true
+		%Heart.play("3")
 	elif PlayerHealth.health == 2:
-		%Heart.visible = false
-		%Heart2.visible = false
-		%Heart3.visible = false
-		%Heart4.visible = true
-		%Heart5.visible = true
+		%Heart.play("2")
 	elif PlayerHealth.health == 1:
-		%Heart.visible = false
-		%Heart2.visible = false
-		%Heart3.visible = false
-		%Heart4.visible = false
-		%Heart5.visible = true
+		%Heart.play("1")
 	elif PlayerHealth.health == 0:
-		%Heart.visible = false
-		%Heart2.visible = false
-		%Heart3.visible = false
-		%Heart4.visible = false
-		%Heart5.visible = false
-		%AnimatedSprite2D.play("die")
+		%Heart.play("0")
 
 func swingSword():
 	if Input.is_key_pressed(KEY_SPACE):

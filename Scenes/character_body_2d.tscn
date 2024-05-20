@@ -1,9 +1,9 @@
-[gd_scene load_steps=58 format=3 uid="uid://c6p48e67nnwyf"]
+[gd_scene load_steps=68 format=3 uid="uid://c6p48e67nnwyf"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerControlls.gd" id="1_gbjol"]
 [ext_resource type="Texture2D" uid="uid://dwxblk33c08lp" path="res://Sprites/player.png" id="2_ykt0p"]
-[ext_resource type="Texture2D" uid="uid://djb3kgn82hi4k" path="res://Sprites/Heart.png" id="4_mhlne"]
-[ext_resource type="Script" path="res://Scripts/Heart.gd" id="5_6bofw"]
+[ext_resource type="Texture2D" uid="uid://v5d881hphj60" path="res://Sprites/Heartspritesheet.png" id="4_5tqmm"]
+[ext_resource type="Texture2D" uid="uid://s7v6uliur3lm" path="res://Sprites/blood.png" id="5_rkges"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_816cu"]
 atlas = ExtResource("2_ykt0p")
@@ -64,6 +64,18 @@ region = Rect2(48, 432, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_c05r0"]
 atlas = ExtResource("2_ykt0p")
 region = Rect2(96, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3p22"]
+atlas = ExtResource("2_ykt0p")
+region = Rect2(240, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7e8n"]
+atlas = ExtResource("2_ykt0p")
+region = Rect2(192, 432, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_065qe"]
+atlas = ExtResource("2_ykt0p")
+region = Rect2(144, 432, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0lof1"]
 atlas = ExtResource("2_ykt0p")
@@ -278,6 +290,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_r3p22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7e8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_065qe")
+}],
+"loop": false,
+"name": &"fairy",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0lof1")
 }, {
 "duration": 1.0,
@@ -418,6 +444,81 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b812g"]
 size = Vector2(16.1989, 20.7405)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7y1r"]
+atlas = ExtResource("4_5tqmm")
+region = Rect2(1108, 0, 1108, 437)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e87hv"]
+atlas = ExtResource("4_5tqmm")
+region = Rect2(0, 874, 1108, 437)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kfe4"]
+atlas = ExtResource("4_5tqmm")
+region = Rect2(0, 437, 1108, 437)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_252w5"]
+atlas = ExtResource("4_5tqmm")
+region = Rect2(1108, 874, 1108, 437)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drv11"]
+atlas = ExtResource("4_5tqmm")
+region = Rect2(0, 0, 1108, 437)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3e4f"]
+atlas = ExtResource("4_5tqmm")
+region = Rect2(1108, 437, 1108, 437)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nj78u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7y1r")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e87hv")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kfe4")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_252w5")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drv11")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3e4f")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(0, -7)
 scale = Vector2(9.44509, 6.7983)
@@ -429,7 +530,9 @@ script = ExtResource("1_gbjol")
 unique_name_in_owner = true
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_dm0eh")
-animation = &"attackBack"
+animation = &"fairy"
+frame = 2
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -437,44 +540,23 @@ animation = &"attackBack"
 position = Vector2(0.158813, 8.01671)
 shape = SubResource("RectangleShape2D_b812g")
 
-[node name="Heart" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(-33.9737, -73.4613)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_mhlne")
-script = ExtResource("5_6bofw")
-
-[node name="Heart2" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(-48.0557, -73.4613)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_mhlne")
-script = ExtResource("5_6bofw")
-
-[node name="Heart3" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(-63.0897, -73.4613)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_mhlne")
-script = ExtResource("5_6bofw")
-
-[node name="Heart4" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(-79.0767, -73.4613)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_mhlne")
-script = ExtResource("5_6bofw")
-
-[node name="Heart5" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(-94.1107, -73.4613)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_mhlne")
-script = ExtResource("5_6bofw")
-
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
 offset_left = 84.3825
 offset_top = -82.2264
 offset_right = 124.382
 offset_bottom = -59.2264
+
+[node name="Blood" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+position = Vector2(8.89351, -8.67864)
+scale = Vector2(0.185859, 0.263526)
+texture = ExtResource("5_rkges")
+
+[node name="Heart" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-62.5722, -69.4291)
+scale = Vector2(0.0622827, 0.0835497)
+sprite_frames = SubResource("SpriteFrames_nj78u")
+animation = &"0"

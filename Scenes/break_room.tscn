@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://osaokykigbhj"]
+[gd_scene load_steps=16 format=3 uid="uid://osaokykigbhj"]
 
 [ext_resource type="Texture2D" uid="uid://clk4odmlfcm6u" path="res://TilesetFloor.png" id="1_7cnir"]
 [ext_resource type="Script" path="res://Scripts/break_room.gd" id="1_b5o2k"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://1w4x03hame82" path="res://Sprites/Stair.png" id="6_o01vl"]
 [ext_resource type="PackedScene" uid="uid://d0xhkwa3hk1cm" path="res://Scenes/portal.tscn" id="7_g5t1q"]
 [ext_resource type="Texture2D" uid="uid://c2cs3km1utoe8" path="res://Sprites/Ladder.png" id="9_mhc3s"]
+[ext_resource type="PackedScene" uid="uid://tfb1n8dl6ojr" path="res://Scenes/wall.tscn" id="10_oxoox"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gg07m"]
 texture = ExtResource("1_7cnir")
@@ -1278,7 +1279,7 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="Player" parent="." instance=ExtResource("2_n415p")]
-position = Vector2(-331, 4)
+position = Vector2(-70, -47)
 
 [node name="Ladder" type="Sprite2D" parent="."]
 position = Vector2(-247, -235)
@@ -1291,6 +1292,25 @@ rotation = 0.39081
 scale = Vector2(1, 2.03142)
 collision_layer = 4
 collision_mask = 4
+
+[node name="Wall2" parent="." instance=ExtResource("10_oxoox")]
+position = Vector2(-87, -311)
+scale = Vector2(34, 0.028)
+
+[node name="Wall4" parent="." instance=ExtResource("10_oxoox")]
+position = Vector2(-423, -19)
+rotation = -3.14154
+scale = Vector2(1, 30.3602)
+skew = -5.23329e-05
+
+[node name="Wall3" parent="." instance=ExtResource("10_oxoox")]
+position = Vector2(259, 12)
+rotation = 1.5708
+scale = Vector2(34.7, 0.029)
+
+[node name="Wall" parent="." instance=ExtResource("10_oxoox")]
+position = Vector2(-82, 256)
+scale = Vector2(34.76, 1)
 
 [connection signal="body_entered" from="Portal" to="." method="_on_portal_body_entered"]
 [connection signal="body_entered" from="Ladder/Portal1" to="." method="_on_portal_1_body_entered"]

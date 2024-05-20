@@ -12,6 +12,7 @@ func _ready():
 func _on_button_pressed():
 	Inventory.health = 5
 	Inventory.floorNum = 1 
+	Inventory.gold = 0
 	get_tree().change_scene_to_file(mainLevel)
 
 

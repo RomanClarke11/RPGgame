@@ -1,13 +1,16 @@
 extends Node2D
 
 var health = 5
-var gold = 0
+var gold = 110
 var mobKills = 0
 var roomKills = 0
 var floorNum = 1
 var killDoors = false
 var playerSpeed = 450
 var bootsON = false 
+var shopItems = ["boot", "heart", "sword"]
+var pressedYes = false 
+var fairyBottle = false
 
 
 func _process(_delta):
@@ -19,6 +22,10 @@ func _process(_delta):
 			%CanvasLayer/Gold/goldCount.text = str(gold)
 		else:
 			%CanvasLayer/Gold.visible = false
+		if fairyBottle == true:
+			%CanvasLayer/FairyBottle.visible = true
+		else:
+			%CanvasLayer/FairyBottle.visible = false
 	if Input.is_key_pressed(KEY_I):
 		%CanvasLayer.visible = false
 		

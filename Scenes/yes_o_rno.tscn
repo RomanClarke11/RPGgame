@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwckd7eruakca"]
+
+[ext_resource type="Script" path="res://Label.gd" id="1_jw160"]
+[ext_resource type="Texture2D" uid="uid://e31it5355xiy" path="res://Sprites/TextBox.png" id="2_a2flw"]
+
+[node name="yesORno" type="Label"]
+z_index = 1000
+offset_left = -57.0
+offset_top = -9.0
+offset_right = 57.0
+offset_bottom = 14.0
+script = ExtResource("1_jw160")
+
+[node name="TextBox" type="Sprite2D" parent="."]
+z_index = -30
+position = Vector2(54, -9.00002)
+scale = Vector2(0.456178, 0.456178)
+texture = ExtResource("2_a2flw")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 40.0
+offset_right = 38.0
+offset_bottom = 71.0
+text = "No"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 41.0
+offset_right = 99.0
+offset_bottom = 72.0
+text = "Yes"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

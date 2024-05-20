@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq407cm0iyubv"]
+
+[ext_resource type="Texture2D" uid="uid://s7v6uliur3lm" path="res://Sprites/blood.png" id="1_cl2mn"]
+[ext_resource type="Script" path="res://Scripts/hurt_effect.gd" id="1_tytv7"]
+
+[node name="hurtEffect" type="Node2D"]
+z_index = 4096
+script = ExtResource("1_tytv7")
+
+[node name="Blood" type="Sprite2D" parent="."]
+scale = Vector2(1.081, 1)
+texture = ExtResource("1_cl2mn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
