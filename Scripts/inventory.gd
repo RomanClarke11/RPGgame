@@ -11,6 +11,13 @@ var bootsON = false
 var shopItems = ["boot", "heart", "sword"]
 var pressedYes = false 
 var fairyBottle = false
+var person1Free = false
+var person2Free = false
+var daveInMainLevel = true
+var giveDaveGold = false
+var daveShopOpen = false
+var highestFloor = 1
+var startFloor = 1
 
 
 func _process(_delta):

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://3y8pmxpgiewr"
+path="res://.godot/imported/DaveText.dialogue-2b66117355082cd417dbec89253daa26.tres"
+
+[deps]
+
+source_file="res://Scripts/DaveText.dialogue"
+dest_files=["res://.godot/imported/DaveText.dialogue-2b66117355082cd417dbec89253daa26.tres"]
+
+[params]
+
+defaults=true

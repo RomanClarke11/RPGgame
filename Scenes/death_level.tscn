@@ -91,5 +91,19 @@ scale = Vector2(10.5938, 11.1979)
 sprite_frames = SubResource("SpriteFrames_2svrn")
 autoplay = "default"
 
+[node name="Label5" type="Label" parent="."]
+offset_left = -18.0
+offset_top = 66.0
+offset_right = 107.0
+offset_bottom = 89.0
+text = "HIGHEST FLOOR"
+
+[node name="Label6" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -8.0
+offset_top = 92.0
+offset_right = 32.0
+offset_bottom = 115.0
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

@@ -1,0 +1,84 @@
+~ start
+
+if Inventory.giveDaveGold == false && Inventory.daveShopOpen == false:
+	Dave: you free me 
+	Dave: for you trouble me show yous 
+	Dave: me needs 30 gold to shows you 
+	- Give 30 gold
+		if Inventory.gold > 30:
+			set Inventory.gold -= 30
+			set Inventory.giveDaveGold = true
+		else
+			Dave: no money :(
+	- no => END
+elif Inventory.giveDaveGold == true:
+	Dave: thanks yous 
+	Dave: now mes can shows yous 
+	Dave: if yous gives me money i can make you start a bit into the dungeon
+	Dave: the lower it is the more it cost you  
+	Dave: got that 
+	- yes
+		Dave: good 
+		set Inventory.daveShopOpen = true 
+		set Inventory.giveDaveGold = false
+		=> END
+	- no
+		Dave: ok talk to me again 
+		=> END
+elif Inventory.daveShopOpen == true:
+	Dave: ok what floor 
+	- 5 70g
+		if Inventory.gold > 70:
+			set Inventory.gold -= 70
+			set Inventory.startFloor = 5
+		else
+			Dave: no money :(
+	- 10 140g
+		if Inventory.gold > 140:
+			set Inventory.gold -= 140
+			set Inventory.startFloor = 10
+		else
+			Dave: no money :(
+	- 15  200g
+		if Inventory.gold > 200:
+			set Inventory.gold -= 200
+			set Inventory.startFloor = 15
+		else
+			Dave: no money :(
+	- 20 500g
+		if Inventory.gold > 500:
+			set Inventory.gold -= 500
+			set Inventory.startFloor = 500
+		else
+			Dave: no money :(
+	- 25 750g
+		if Inventory.gold > 750:
+			set Inventory.gold -= 750
+			set Inventory.startFloor = 750
+		else
+			Dave: no money :(
+	- 30 1100g
+		if Inventory.gold > 1100:
+			set Inventory.gold -= 1100
+			set Inventory.startFloor = 1100
+		else
+			Dave: no money :(
+	- 35 1500g
+		if Inventory.gold > 1500:
+			set Inventory.gold -= 1500
+			set Inventory.startFloor = 1500
+		else
+			Dave: no money :(
+	- 40 3000g
+		if Inventory.gold > 3000:
+			set Inventory.gold -= 3000
+			set Inventory.startFloor = 3000
+		else
+			Dave: no money :(
+	- 45 6000g
+		if Inventory.gold > 6000:
+			set Inventory.gold -= 6000
+			set Inventory.startFloor = 6000
+		else
+			Dave: no money :(
+=> END

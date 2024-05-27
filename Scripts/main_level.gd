@@ -7,6 +7,11 @@ func shop():
 	pass
 
 
+func _ready():
+	%Dave.visible = false
+	if Inventory.daveInMainLevel == true:
+		%Dave.visible = true
+	
 
 func _on_portal_body_entered(_body):
 	%ProgressBar.visible = true
@@ -31,3 +36,6 @@ func _process(_delta):
 
 func _on_portal_2_body_entered(_body):
 	get_tree().change_scene_to_file(loadShop)
+
+
+
