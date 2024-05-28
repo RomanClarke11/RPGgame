@@ -20,7 +20,7 @@ var highestFloor = 1
 var startFloor = 1
 var inDungeon = false 
 var inventoryOpen = false
-
+var playerHit = false 
 
 
 

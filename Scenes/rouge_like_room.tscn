@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cijjmmmob0261"]
+[gd_scene load_steps=21 format=3 uid="uid://cijjmmmob0261"]
 
 [ext_resource type="Script" path="res://Scripts/rouge_like_room.gd" id="1_sfbnj"]
 [ext_resource type="Texture2D" uid="uid://v5d881hphj60" path="res://Sprites/Heartspritesheet.png" id="3_dkk5h"]
 [ext_resource type="Texture2D" uid="uid://bsrk6y2swvanl" path="res://Sprites/WallTileMap.png" id="3_ibcfq"]
+[ext_resource type="Texture2D" uid="uid://s7v6uliur3lm" path="res://Sprites/blood.png" id="4_851u8"]
 [ext_resource type="PackedScene" uid="uid://1miq8sn5i6i7" path="res://Scenes/bomb.tscn" id="4_unk8f"]
 [ext_resource type="PackedScene" uid="uid://tfb1n8dl6ojr" path="res://Scenes/wall.tscn" id="5_1bxyu"]
 [ext_resource type="PackedScene" uid="uid://c6p48e67nnwyf" path="res://Scenes/character_body_2d.tscn" id="5_mo6kg"]
@@ -1077,10 +1078,31 @@ zoom = Vector2(1.352, 1.1)
 
 [node name="Heart2" type="AnimatedSprite2D" parent="Camera2D"]
 unique_name_in_owner = true
-position = Vector2(-414, -383)
+z_index = 4096
+y_sort_enabled = true
+position = Vector2(-392, -428)
 scale = Vector2(0.588266, 0.567996)
 sprite_frames = SubResource("SpriteFrames_rudpt")
 animation = &"1"
+
+[node name="Label" type="Label" parent="Camera2D"]
+unique_name_in_owner = true
+z_index = 1000
+y_sort_enabled = true
+offset_left = 612.0
+offset_top = -484.0
+offset_right = 652.0
+offset_bottom = -347.0
+theme_override_font_sizes/font_size = 100
+
+[node name="Blood" type="Sprite2D" parent="Camera2D"]
+unique_name_in_owner = true
+visible = false
+z_index = 1000
+y_sort_enabled = true
+position = Vector2(-2, 47)
+scale = Vector2(1.38785, 1.55603)
+texture = ExtResource("4_851u8")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 unique_name_in_owner = true

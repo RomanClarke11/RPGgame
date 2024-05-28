@@ -1,8 +1,7 @@
-[gd_scene load_steps=60 format=3 uid="uid://c6p48e67nnwyf"]
+[gd_scene load_steps=59 format=3 uid="uid://c6p48e67nnwyf"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerControlls.gd" id="1_gbjol"]
 [ext_resource type="Texture2D" uid="uid://dwxblk33c08lp" path="res://Sprites/player.png" id="2_ykt0p"]
-[ext_resource type="Texture2D" uid="uid://s7v6uliur3lm" path="res://Sprites/blood.png" id="5_rkges"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_816cu"]
 atlas = ExtResource("2_ykt0p")
@@ -461,17 +460,3 @@ frame_progress = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.158813, 8.01671)
 shape = SubResource("RectangleShape2D_b812g")
-
-[node name="Label" type="Label" parent="."]
-unique_name_in_owner = true
-offset_left = 84.3825
-offset_top = -82.2264
-offset_right = 124.382
-offset_bottom = -59.2264
-
-[node name="Blood" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-position = Vector2(8.89351, -8.67864)
-scale = Vector2(0.185859, 0.263526)
-texture = ExtResource("5_rkges")

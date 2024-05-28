@@ -698,7 +698,32 @@ func reload():
 	get_tree().reload_current_scene()
 
 
-
+func _process(delta):
+	if inventory.playerHit == true:
+		%Blood.visible = true
+		PlayerHealth.health -= 1
+		inventory.playerHit = false
+		await get_tree().create_timer(0.6).timeout
+		%Blood.visible = false
+	
+	if PlayerHealth.health == 5:
+		%Camera2D/Heart2.play("5")
+	elif PlayerHealth.health == 4:
+		%Camera2D/Heart2.play("4")
+	elif PlayerHealth.health == 3:
+		%Camera2D/Heart2.play("3")
+	elif PlayerHealth.health == 2:
+		%Camera2D/Heart2.play("2")
+	elif PlayerHealth.health == 1:
+		%Camera2D/Heart2.play("1")
+	elif PlayerHealth.health == 0:
+		%Camera2D/Heart2.play("0")
+		
+	if Inventory.inDungeon == true:
+		%Label.visible = true
+		%Label.text = str(inventory.floorNum)
+	else:
+		%Label.visible = false 
 
 
 
@@ -745,3 +770,6 @@ func _on_two_body_entered(body):
 func _on_three_body_entered(body):
 	if body.has_method("pickUpGold"):
 		%Camera2D.position = %ColorRect9.position
+
+
+
