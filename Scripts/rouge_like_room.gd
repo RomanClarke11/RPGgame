@@ -12,6 +12,7 @@ var SixBeenUsed = false
 var SevenBeenUsed = false
 var EghitBeenUsed = false
 var NineBeenUsed = false
+@onready var PlayerHealth = get_node("/root/Inventory")
 const ROOM1 = preload("res://Scenes/Rooms/room_1.tscn")
 const ROOM2 = preload("res://Scenes/Rooms/room_2.tscn")
 const ROOM3 = preload("res://Scenes/Rooms/room_3.tscn")
@@ -35,10 +36,23 @@ const stairs = preload("res://Scenes/stair.tscn")
 
 
 func _ready():
+	if PlayerHealth.health == 5:
+		%Camera2D/Heart2.play("5")
+	elif PlayerHealth.health == 4:
+		%Camera2D/Heart2.play("4")
+	elif PlayerHealth.health == 3:
+		%Camera2D/Heart2.play("3")
+	elif PlayerHealth.health == 2:
+		%Camera2D/Heart2.play("2")
+	elif PlayerHealth.health == 1:
+		%Camera2D/Heart2.play("1")
+	elif PlayerHealth.health == 0:
+		%Camera2D/Heart2.play("0")
 	spawnRandRoom()
 
 	
 func spawnRandRoom():
+	inventory.inDungeon = true 
 
 	while RoomsInUse != 9:
 		roomNumber = randi_range(1, 9)
@@ -684,3 +698,50 @@ func reload():
 	get_tree().reload_current_scene()
 
 
+
+
+
+
+
+func _on_five_body_entered(body):
+	if body.has_method("pickUpGold"):
+		%Camera2D.position = %ColorRect.position
+
+
+func _on_six_body_entered(body):
+	if body.has_method("pickUpGold"):
+		%Camera2D.position = %ColorRect2.position
+
+
+func _on_four_body_entered(body):
+	if body.has_method("pickUpGold"):
+		%Camera2D.position = %ColorRect3.position
+
+func _on_seven_body_entered(body):
+	if body.has_method("pickUpGold"):
+		%Camera2D.position = %ColorRect4.position
+
+
+func _on_eight_body_entered(body):
+	if body.has_method("pickUpGold"):
+		%Camera2D.position = %ColorRect5.position
+
+
+func _on_ninr_body_entered(body):
+	if body.has_method("pickUpGold"):
+		%Camera2D.position = %ColorRect6.position
+
+
+func _on_one_body_entered(body):
+	if body.has_method("pickUpGold"):
+		%Camera2D.position = %ColorRect7.position
+
+
+func _on_two_body_entered(body):
+	if body.has_method("pickUpGold"):
+		%Camera2D.position = %ColorRect8.position
+
+
+func _on_three_body_entered(body):
+	if body.has_method("pickUpGold"):
+		%Camera2D.position = %ColorRect9.position

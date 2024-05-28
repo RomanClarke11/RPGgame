@@ -7,7 +7,7 @@ var Person = 0
 var NPC = false
 var doorhit = false
 
-func _on_portal_body_entered(body):
+func _on_portal_body_entered(_body):
 	get_tree().change_scene_to_file(rougeLikeRooms)
 	inventory.floorNum += 1
 
@@ -49,7 +49,7 @@ func _on_area_2d_area_entered(area):
 		Open()
 
 
-func _on_portal_1_area_entered(area):
+func _on_portal_1_area_entered(_area):
 	inventory.daveInMainLevel = true
 	inventory.person1Free = false
 	%dave.queue_free()

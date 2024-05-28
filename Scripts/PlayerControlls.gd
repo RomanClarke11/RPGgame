@@ -79,24 +79,16 @@ func _physics_process(_delta):
 		
 func _process(_delta):
 	swingSword()
-	%Label.text = str(inventory.floorNum)
+	if Inventory.inDungeon == true:
+		%Label.visible = true
+		%Label.text = str(inventory.floorNum)
+	else:
+		%Label.visible = false 
 	
 	while Input.is_key_pressed(KEY_SPACE):
 		attacking = true
 		break
 	
-	if PlayerHealth.health == 5:
-		%Heart.play("5")
-	elif PlayerHealth.health == 4:
-		%Heart.play("4")
-	elif PlayerHealth.health == 3:
-		%Heart.play("3")
-	elif PlayerHealth.health == 2:
-		%Heart.play("2")
-	elif PlayerHealth.health == 1:
-		%Heart.play("1")
-	elif PlayerHealth.health == 0:
-		%Heart.play("0")
 		if inventory.fairyBottle == true:
 			%AnimatedSprite2D.play("fairy")
 			await get_tree().create_timer(3.0).timeout
@@ -125,19 +117,7 @@ func attack():
 	
 	
 func _ready():
-	if PlayerHealth.health == 5:
-		%Heart.play("5")
-	elif PlayerHealth.health == 4:
-		%Heart.play("4")
-	elif PlayerHealth.health == 3:
-		%Heart.play("3")
-	elif PlayerHealth.health == 2:
-		%Heart.play("2")
-	elif PlayerHealth.health == 1:
-		%Heart.play("1")
-	elif PlayerHealth.health == 0:
-		%Heart.play("0")
-
+	pass
 func swingSword():
 	if Input.is_key_pressed(KEY_SPACE):
 		if facing_up == true:
