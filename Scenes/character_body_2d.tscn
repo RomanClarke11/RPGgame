@@ -453,9 +453,7 @@ script = ExtResource("1_gbjol")
 unique_name_in_owner = true
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_dm0eh")
-animation = &"fairy"
-frame = 2
-frame_progress = 1.0
+animation = &"attackBack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.158813, 8.01671)

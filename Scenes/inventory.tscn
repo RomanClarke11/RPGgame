@@ -10,6 +10,7 @@
 radius = 43.1741
 
 [node name="Inventory" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_qjcey")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

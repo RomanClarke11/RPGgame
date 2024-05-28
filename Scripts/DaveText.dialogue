@@ -27,7 +27,7 @@ elif Inventory.giveDaveGold == true:
 		=> END
 elif Inventory.daveShopOpen == true:
 	Dave: ok what floor 
-	-no => END
+	- none => END
 	- 5 70g
 		if Inventory.gold > 70:
 			set Inventory.gold -= 70

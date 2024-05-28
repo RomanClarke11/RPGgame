@@ -31,8 +31,10 @@ func _physics_process(_delta):
 func _process(_delta):
 
 	if %CanvasLayer.visible == true:
+		get_tree().paused = true
 		inventoryOpen = true
 	elif %CanvasLayer.visible == false:
+		get_tree().paused = false
 		inventoryOpen = false
 		
 		

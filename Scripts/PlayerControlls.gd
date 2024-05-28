@@ -119,7 +119,7 @@ func swingSword():
 			walking = false 
 			attack()
 			%AnimatedSprite2D.play("attackBack")
-			await get_tree().create_timer(0.6).timeout
+			await get_tree().create_timer(0.4).timeout
 			walking = true
 		elif facing_down == true:
 			walking = false

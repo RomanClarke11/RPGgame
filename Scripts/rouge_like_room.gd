@@ -701,9 +701,10 @@ func reload():
 func _process(delta):
 	if inventory.playerHit == true:
 		%Blood.visible = true
+		%Camera2D/Blood.play("default")
 		PlayerHealth.health -= 1
 		inventory.playerHit = false
-		await get_tree().create_timer(0.6).timeout
+		await get_tree().create_timer(0.5).timeout
 		%Blood.visible = false
 	
 	if PlayerHealth.health == 5:
